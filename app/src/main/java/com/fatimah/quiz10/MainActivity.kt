@@ -1,0 +1,44 @@
+package com.fatimah.quiz10
+
+import android.graphics.BitmapFactory
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+    val CarList: ArrayList<CarModel> = ArrayList()
+    private lateinit var layoutManager: RecyclerView.LayoutManager
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        CarList.add(
+            CarModel(
+                "Mini Cooper",
+                BitmapFactory.decodeResource(
+                    resources, R.drawable.mc
+                )
+            )
+        )
+        CarList.add(
+            CarModel(
+                "BMW",
+                BitmapFactory.decodeResource(
+                    resources, R.drawable.bmw
+                )
+            )
+        )
+        CarList.add(
+            CarModel(
+                "Mercedes Benz",
+                BitmapFactory.decodeResource(
+                    resources, R.drawable.mb
+                )
+            )
+        )
+        layoutManager = LinearLayoutManager(this)
+        rvCarList.layoutManager = layoutManager
+        rvCarList.adapter = RecyclerViewAdapter(this, CarList)
+    }
+}
